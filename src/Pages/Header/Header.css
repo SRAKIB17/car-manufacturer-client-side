@@ -1,0 +1,20 @@
+.bgHeader img:nth-child(1){
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -10;
+}
+:root {
+    --bg-text-color: #A0CB23;
+}
+.bgHeader img:nth-child(2){
+    z-index: -10;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: rotate(-180deg);
+}
+.headerTop{
+    padding: 10px;
+    background-color: var(--bg-text-color);
+}

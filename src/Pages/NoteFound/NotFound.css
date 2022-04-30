@@ -1,0 +1,45 @@
+:root {
+    --bg-text-color: #A0CB23;
+}
+.notFound{
+    background-repeat: no-repeat;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 200px;
+    display: flex;
+    justify-content: space-around;
+}
+.notFound h1{
+    font-size: 100px;
+}
+.notFound h3{
+    color: var(--bg-text-color);
+}
+.notFound p{
+    font-size: 20px;
+    text-align: center;
+    word-wrap: break-word;
+}
+.notFound button{
+    background-color: var(--bg-text-color);
+
+    color: white;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.notFound button:hover{
+    background-color: #addd1c;
+}
+.notFound img{
+    max-width: 100%;
+}
+.notFound .bgImage{
+    z-index: -1;
+    position: absolute;
+    bottom: -150px;
+    right: -110px;
+    width: 500px;
+}
