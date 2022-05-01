@@ -39,7 +39,7 @@ const ManageOne = ({ id }) => {
                 </div> 
             </div>  
         </div>
-    );
+    ); 
 };
 
 export default ManageOne;
