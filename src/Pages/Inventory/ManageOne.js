@@ -28,7 +28,7 @@ const ManageOne = ({ id }) => {
                         </p>
                         <div className='manage'>
                             <div>
-                                <button><img src={add} alt="" className='manage' />Add Cart</button>
+                                <button><img  alt="" className='manage' />Add Cart</button>
                             </div>
                             {/* <div> */}
                                 {/* <button onClick={() => { navigate('/inventory/' + _id) }}> <img src={manage} alt="" className='manage' /> Manage Item</button> */}
@@ -36,7 +36,7 @@ const ManageOne = ({ id }) => {
                             {/* </div> */}
                         </div>
                     </div>
-                </div>
+                </div> 
             </div>
         </div>
     );
