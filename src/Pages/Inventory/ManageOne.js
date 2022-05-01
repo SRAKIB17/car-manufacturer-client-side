@@ -37,7 +37,7 @@ const ManageOne = ({ id }) => {
                         </div>
                     </div>
                 </div> 
-            </div>
+            </div>  
         </div>
     );
 };
