@@ -1,0 +1,38 @@
+.manageItemMain {
+    display: flex;
+  
+    justify-content: center;
+    margin: 30px;
+}
+
+.manageItem img{
+    height: auto;
+    max-width: 100%;
+}
+.manageItem .price {
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.manageItem .price .new {
+    color: var(--bg-text-color);
+}
+
+.manageItem .price .old {
+    color: rgb(196, 196, 196);
+}
+
+.manageItem .category a {
+    color: var(--bg-text-color);
+    text-decoration: none;
+    padding: 5px;
+}
+
+.manageItem p {
+    margin: 0 auto;
+    display: block;
+    word-break: break-all;
+    margin-bottom: 10px;
+}

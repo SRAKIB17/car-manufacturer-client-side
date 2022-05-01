@@ -21,7 +21,7 @@ const ItemView = ({ item: { DiscountPrice, category, details, imageUrl, price, q
 
                     <p>
                         {
-                            details.substring(0, 60)
+                            details?.substring(0, 60)
                         }...
                     </p>
                     <div className='manage'>
@@ -29,7 +29,7 @@ const ItemView = ({ item: { DiscountPrice, category, details, imageUrl, price, q
                             <button><img src={add} alt="" className='manage' />Add Cart</button>
                         </div>
                         <div>
-                            <button onClick={() => { navigate(_id) }}> <img src={manage} alt="" className='manage' /> Manage Item</button>
+                            <button onClick={() => { navigate('/inventory/'+_id) }}> <img src={manage} alt="" className='manage' /> Manage Item</button>
 
                         </div>
                     </div>

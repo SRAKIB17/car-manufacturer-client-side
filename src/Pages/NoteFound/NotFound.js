@@ -1,9 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import vig from '../../images/404.png';
 import egg from '../../images/egg404.jpg';
 import './NotFound.css'
 
 const NotFound = () => {
+    const navigate = useNavigate()
     return (
         <div className='notFound'>
             <div>
@@ -16,7 +18,7 @@ const NotFound = () => {
                     The link you're trying to access is probably broken , or the page has been removed
 
                 </p>
-                <button>Back to Home</button>
+                <button onClick={()=>navigate('/')}>Back to Home</button>
             </div>
             <div className='bgImage'>
                 <img src={vig} alt="" />
