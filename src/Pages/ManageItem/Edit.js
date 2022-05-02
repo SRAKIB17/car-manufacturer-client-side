@@ -1,22 +1,25 @@
 
 import React, { useEffect, useState } from 'react';
-import price from './svg/price.svg';
-import supplier from './svg/courier.png';
-import addImg from './svg/image.svg';
-import add from './svg/add.svg';
-import description from './svg/description.png';
-import category from './svg/category.svg';
-import vegetables from './svg/vegetables.png';
+import price from '../AddItems/svg/price.svg';
+import supplier from '../AddItems/svg/courier.png';
+import addImg from '../AddItems/svg/image.svg';
+import add from '../AddItems/svg/add.svg';
+import description from '../AddItems/svg/description.png';
+import category from '../AddItems/svg/category.svg';
+import vegetables from '../AddItems/svg/vegetables.png';
 
-import './AddItem.css'
+import '../AddItems/AddItem.css'
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import useFindOneItem from '../../hooks/useFindOneItem';
 
+const AddItem = ({ updateId, handleEdit, setItems:{ setItems, items } }) => {
 
-const AddItem = () => {
+    const { item, setItem } = useFindOneItem(updateId)
 
-
-
+    const onKeyUp = (event) => {
+        setItem({})
+    }
 
     const handleAddItem = async (event) => {
         event.preventDefault()
@@ -29,23 +32,27 @@ const AddItem = () => {
         const imageUrl = event.target.imageUrl.value;
         const details = event.target.details.value;
         const Item = { title, category, price, DiscountPrice, quantity, supplierName, imageUrl, details }
-        const { data } = await axios.post('http://localhost:5000/item', Item)
-        toast.success('Successfully Added')
-
-
+        if (updateId) {
+            const { data } = await axios.put('http://localhost:5000/item/' + updateId, Item);
+            if (data.modifiedCount === 1) {
+                const newItem = items.filter(item => item._id !== updateId)
+                setItems([...newItem, Item])
+            }
+            handleEdit('')
+        }
 
     }
     return (
         <div className='addItem'>
-            <h2>Please Add Item</h2>
-            <form onSubmit={handleAddItem}>
+            <h2>Please Update Item</h2>
+            <form onSubmit={handleAddItem} onKeyUp={onKeyUp}>
                 <div>
                     <img src={vegetables} alt="" />
-                    <input placeholder='Item Title' type="text" name="name" id=""  required />
+                    <input placeholder='Item Title' type="text" name="name" id="" value={item?.title} required />
                 </div>
                 <div>
                     <img src={category} alt="" />
-                    <input placeholder='Category' type="text" name="category" id="" list="category" required />
+                    <input placeholder='Category' type="text" name="category" id="" value={item?.category} list="category" required />
                     <datalist id="category">
                         <option value="Fruits" />
                         <option value="Vegetables" />
@@ -69,30 +76,30 @@ const AddItem = () => {
                 </div>
                 <div>
                     <img src={price} alt="" />
-                    <input placeholder='Price' type="text"  name="price" id="" required />
+                    <input placeholder='Price' type="text" value={item?.price} name="price" id="" required />
                 </div>
                 <div>
                     <img src={price} alt="" />
-                    <input placeholder='Discount Price' type="text"  name="DiscountPrice" id="" required />
+                    <input placeholder='Discount Price' type="text" value={item?.DiscountPrice} name="DiscountPrice" id="" required />
                 </div>
                 <div>
                     <img src={add} alt="" />
-                    <input placeholder='Quantity' type="text" name="quantity" id="" required />
+                    <input placeholder='Quantity' type="text" value={item?.quantity} name="quantity" id="" required />
 
                 </div>
                 <div>
                     <img src={supplier} alt="" />
-                    <input placeholder='Supplier Name' type="text"  name="supplierName" id="" required />
+                    <input placeholder='Supplier Name' type="text" value={item?.supplierName} name="supplierName" id="" required />
                 </div>
                 <div>
                     <img src={addImg} alt="" />
-                    <input placeholder='Image Url' type="text"  name="imageUrl" id="" required />
+                    <input placeholder='Image Url' type="text" value={item?.imageUrl} name="imageUrl" id="" required />
                 </div>
                 <div>
                     <img src={description} alt="" />
-                    <input placeholder='Details' type="text"  name="details" id="" required />
+                    <input placeholder='Details' type="text" value={item?.details} name="details" id="" required />
                 </div>
-                <input type="submit" value="Add Item" />
+                <input type="submit" value="Update Item"/>
 
             </form>
         </div>

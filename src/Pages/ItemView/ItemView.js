@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 
 const ItemView = ({ item: { DiscountPrice, category, details, imageUrl, price, quantity, supplierName, title, _id } }) => {
+    const quantityParse = parseInt(quantity)
     const navigate = useNavigate()
     return (
         <div className='item'>
@@ -12,7 +13,7 @@ const ItemView = ({ item: { DiscountPrice, category, details, imageUrl, price, q
                 <img src={imageUrl} alt="" />
                 <h3>{title}</h3>
                 <h5>Quantity:
-                    <span className='new'> {quantity}
+                    <span className='new'> {Boolean(quantityParse)?quantityParse:<span style={{color:"red"}}>Stock out</span>}
                     </span>
                 </h5>
                 <h3 className='price'>

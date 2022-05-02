@@ -1,0 +1,86 @@
+:root {
+    --bg-text-color: #8DC32F;
+}
+
+.loginForm {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loginForm form div {
+    padding: 10px;
+    height: 40px;
+    border-radius: 5px;
+    margin: 5px;
+    background-color: aliceblue;
+    display: flex;
+    align-items: center;
+}
+
+.loginForm input:not(input[type=submit]) {
+    border: none;
+    padding: 5px;
+    background-color: transparent;
+    outline: none;
+}
+
+.loginForm input[type=submit] {
+    border-radius: 5px;
+    background-color: #6e9c1f;
+    color: white;
+    border: none;
+    padding: 5px;
+    width: 100%;
+}
+
+.loginForm h4 {
+    text-align: center;
+    color: #6e9c1f;
+}
+.loginForm .or {
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loginForm .or div{
+    width: 125px;
+    height: 1px;
+    background-color: #8E8E8E;
+
+}
+.loginForm .or p{
+    color: #8E8E8E;
+    padding-top: 12px;
+}
+
+.socialLogin button{
+    background-color: transparent;
+    margin: 5px;
+    display: block;
+    border-radius: 5px;
+    width:257px;
+    border: none;
+}
+.socialLogin button:nth-child(1){
+    background-color: #0095f6;
+    color: white;
+    padding: 5px;
+}
+.socialLogin button:nth-child(2){
+    background-color:#FBBC05;
+    color: white;
+    padding: 5px;
+}
+
+.socialLogin button:nth-child(4):hover,button:nth-child(3):hover {
+    text-decoration: underline;
+}
+
+.loginForm img {
+    width: 20px;
+    height: 20px;
+}

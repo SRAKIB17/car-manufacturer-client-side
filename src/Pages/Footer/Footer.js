@@ -6,12 +6,7 @@ import { ArrowRight, Discord, Facebook, Instagram, Linkedin, Pinterest, Twitter,
 const Footer = () => {
     return (
         <footer>
-            {/* <div>
-                <div className='bgFooter'>
-                    <img src={bg} alt="" />
-                    <img src={bg} alt="" />
-                </div>
-            </div> */}
+
             <div className='footerSection'>
 
                 <div>

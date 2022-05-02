@@ -3,14 +3,6 @@
 }
 
 
-
-.bgFooter img:nth-child(1) {
-    position: absolute;
-    left: 0;
-    /* bottom: 0; */
-    z-index: -10;
-}
-
 .footerSection{
     padding: 20px 10px;
     background-color: var(--bg-text-color);
@@ -18,12 +10,7 @@
     align-items: center;
     justify-content: space-between;
 }
-.bgFooter img:nth-child(2) {
-    z-index: -10;
-    position: absolute;
-    right: 0;
-    transform: rotate(-180deg);
-}
+
 .quickLinkTitle{
     text-align: center;
 }

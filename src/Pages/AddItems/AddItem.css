@@ -13,6 +13,7 @@
     flex-direction: column;
 }
 .addItem form{
+    margin-bottom: 30px;
     display: flex;
     flex-direction: column;
 }

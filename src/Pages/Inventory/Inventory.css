@@ -50,3 +50,15 @@
 .manageItem button:hover{
     background-color: #b1dd2a;
 }
+
+.reStockDel{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#restock {
+    background-color: gainsboro;
+    border: none;
+    padding: 5px;
+    outline: none;
+}

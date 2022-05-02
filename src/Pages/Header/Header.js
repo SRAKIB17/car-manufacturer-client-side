@@ -24,10 +24,10 @@ const Header = () => {
                             >
                                 <Nav.Link as={Link} className='text-light h5' to="/home">Home</Nav.Link>
                                 <Nav.Link as={Link} className='text-light h5' to="#action2">Blogs</Nav.Link>
-                                <Nav.Link as={Link} className='text-light h5' to="#action2">Login</Nav.Link>
+                                <Nav.Link as={Link} className='text-light h5' to="/login">Login</Nav.Link>
                                
                                 <>
-                                    <Nav.Link as={Link} className='text-light h5' to="/manage-item">Manage Item</Nav.Link>
+                                    <Nav.Link as={Link} className='text-light h5' to="/inventory/manage-item">Manage Item</Nav.Link>
                                     <Nav.Link as={Link} className='text-light h5' to="/add-item">Add Item</Nav.Link>
                                     <Nav.Link as={Link} className='text-light h5' to="/add-item">Sign out</Nav.Link>
                                 </>

@@ -4,6 +4,14 @@
     border-radius: 50%;
 }
 
+.ManageItemMainTitle{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+
+
 .deleEdit {
     width: 20px;
     height: 20px;

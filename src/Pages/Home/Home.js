@@ -6,7 +6,9 @@ import './Home.css'
 import { Facebook, Send } from 'react-bootstrap-icons'
 import join from '../../images/join.png';
 import Apps from './Apps';
+import { useNavigate } from 'react-router-dom';
 const Home = () => {
+    const navigate = useNavigate()
     const [items, setItems] = useState([])
     useEffect(() => {
         const getItem = async () => {
@@ -23,7 +25,7 @@ const Home = () => {
                     <h1>Shop Online For</h1>
                     <h1>Fresh Grocries</h1>
                     <p>
-                        The center of the store is typically called the Grocery department and while it doesn't always make up the largest percentage of a store's sales, it is the largest department in the store. It is also the one department that virtually every customer shops in. So the Grocery department is critical to a store's success .
+                        The center of the store is typically called the Grocery department and while it doesn't always make up the largest percentage of a store's sales, it is the largest department in the store.
                         <button> Manage More</button>
 
                     </p>
@@ -51,7 +53,7 @@ const Home = () => {
                     items.map(item => <ItemView id={item._id} item={item} />)
                 }
             </div>
-            <button className='manageInventories'> Manage Inventories </button>
+            <button onClick={()=>navigate('/inventory/manage-item')} className='manageInventories'> Manage Inventories </button>
             <div>
                 <Apps/>
             </div>
