@@ -7,6 +7,7 @@ import { Facebook, Send } from 'react-bootstrap-icons'
 import join from '../../images/join.png';
 import Apps from './Apps';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../Loading/Loading';
 const Home = () => {
     const navigate = useNavigate()
     const [items, setItems] = useState([])
@@ -17,6 +18,9 @@ const Home = () => {
         }
         getItem()
     }, [])
+    if(items.length === 0){
+        return <Loading/>
+    }
     return (
         <div>
             <div className='homeBanner'>

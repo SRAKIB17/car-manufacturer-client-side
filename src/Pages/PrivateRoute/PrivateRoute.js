@@ -4,17 +4,21 @@ import { Navigate, useLocation } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../Loading/Loading';
 
-const PrivateRoute = ({children}) => {
+const PrivateRoute = ({ children }) => {
     const location = useLocation()
-    const [user, loading]= useAuthState(auth)
+    const [user, loading] = useAuthState(auth)
     console.log(children)
-    if(!loading){
-        return <Loading/>
+
+    if (!user) {
+        return <Navigate to='/login' state={{ from: location }} />
     }
-    if(!user){
-        return <Navigate to='/login' state={{from:location}}/>
+    if (loading) {
+        return <Loading />
     }
-    return children
+    if (user) {
+        return children
+    }
+
 };
 
 export default PrivateRoute;

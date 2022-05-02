@@ -11,6 +11,7 @@ import Inventory from './Pages/Inventory/Inventory';
 import Footer from './Pages/Footer/Footer';
 import Login from './Pages/Login/Login';
 import Blog from './Pages/Blog/Blog';
+import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
 
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
        <Route path='/home' element={<Home/>}/>
        <Route path='/blogs' element={<Blog/>}/>
        <Route path='/add-item' element={<AddItem/>}/>
-       <Route path='/inventory/:id' element={<Inventory/>}/>
+       <Route path='/inventory/:id' element={<PrivateRoute><Inventory/></PrivateRoute>}/>
        <Route path='/login' element={<Login/>}/>
 
        <Route path='*' element={<NotFound/>}/>

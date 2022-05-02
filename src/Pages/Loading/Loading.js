@@ -24,7 +24,16 @@ const Loading = () => {
                     <div className="sub-rect pure-background"></div>
                 </div>
 
-                <div className="css-dom"></div>
+                <div style={{display:'flex',justifyContent:'space-between', alignItems:'center',flexWrap:'wrap'}}>
+                    <div className="css-dom"></div>
+                    <div className="css-dom"></div>
+                    <div className="css-dom"></div>
+                    <div className="css-dom"></div>
+                    <div className="css-dom"></div>
+                    <div className="css-dom"></div>
+                    <div className="css-dom"></div>
+                    <div className="css-dom"></div>
+                </div>
             </div>
         </div>
     );

@@ -21,7 +21,7 @@ const Apps = () => {
                 </div>
             </div>
             <div className='bestApps'>
-                <img src={appsBg} alt="" />
+                <img className='appsBg' src={appsBg} alt="" />
                 <div className='appsLink'>
                     <h6>Get the App</h6>
                     <div>
