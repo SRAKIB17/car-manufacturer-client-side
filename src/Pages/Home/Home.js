@@ -20,7 +20,7 @@ const Home = () => {
     return (
         <div>
             <div className='homeBanner'>
-                <div>
+                <div className='bannarTitle'>
                     <h3>Welcome To Our Shop Grocery warehouse</h3>
                     <h1>Shop Online For</h1>
                     <h1>Fresh Grocries</h1>
@@ -30,7 +30,7 @@ const Home = () => {
 
                     </p>
                 </div>
-                <div>
+                <div className='bannarImg'>
                     <img src={headerHome} alt="" />
                 </div>
             </div>

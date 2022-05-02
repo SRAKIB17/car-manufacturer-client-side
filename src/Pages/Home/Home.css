@@ -10,7 +10,8 @@
     padding: 10px;
 }
 
-.homeBanner  button ,.manageInventories{
+.homeBanner button,
+.manageInventories {
     margin-left: 15px;
     background-color: var(--bg-text-color);
     border: none;
@@ -20,14 +21,104 @@
     font-size: 20px;
     background-color: var(--bg-text-color);
 }
+
 .homeBanner h3 {
     color: var(--bg-text-color);
 }
 
-.homeBanner img {
-    max-width: 100%;
-    height: auto;
+/* .homeBanner img responsive  */
+@media only screen and (max-width:576px) {
+    .homeBanner {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    * p {
+        font-size: 16px !important;
+    }
+
+    .bannarTitle {
+        order: 2;
+    }
+
+    .bannarImg img {
+        order: 1;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .bestApps .appsLink {
+        left: 100px;
+        bottom: 10px !important;
+    }
+
+    .bestApps .appsLink img {
+        height: 30px !important;
+        width: 100px !important;
+    }
 }
+
+@media only screen and (min-width:577px) and (max-width: 786px) {
+    .homeBanner {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    * p {
+        font-size: 16px !important;
+    }
+
+    .bannarTitle {
+        order: 2;
+    }
+
+    .bannarImg img {
+        order: 1;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .bestApps .appsLink img {
+        height: 30px !important;
+        width: 100px !important;
+    }
+
+    .bestApps .appsLink {
+        left: 100px;
+        bottom: 30px !important;
+    }
+}
+
+@media only screen and (min-width:788px) and (max-width: 992px) {
+    .homeBanner img {
+        width: 400px;
+        height: auto;
+    }
+}
+
+@media only screen and (min-width:992px) and (max-width: 1150px) {
+    .homeBanner img {
+        width: 500px;
+        height: auto;
+    }
+}
+
+@media only screen and (min-width:1151px) {
+    .homeBanner img {
+        width: 500px;
+        height: auto;
+    }
+}
+
+@media only screen and (min-width:1400px) {
+    .homeBanner img {
+        width: 600px;
+        height: auto;
+    }
+
+}
+
+
 
 .inventoriesTitle {
     text-align: center;
@@ -61,7 +152,8 @@
     background-color: rgb(218, 218, 218);
     margin: 20px;
 }
-.joinWithUs img{
+
+.joinWithUs img {
     max-width: 100%;
     height: auto;
     right: 0;
@@ -69,21 +161,26 @@
     position: absolute;
     margin-bottom: 0;
 }
-.joinWithUs div div{
+
+.joinWithUs div div {
     padding-left: 10px;
     display: flex;
 }
-.joinWithUs div h3{
-    color: var(--bg-text-color);    
+
+.joinWithUs div h3 {
+    color: var(--bg-text-color);
 }
-.joinWithUs div div{
+
+.joinWithUs div div {
     padding-left: 10px;
     display: flex;
 }
+
 .joinWithUs input {
     outline: none;
     border: none;
 }
+
 .joinWithUs button {
     background-color: #b1dd2a;
     border: none;
