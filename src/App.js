@@ -10,6 +10,7 @@ import ManageItem from './Pages/ManageItem/ManageItem';
 import Inventory from './Pages/Inventory/Inventory';
 import Footer from './Pages/Footer/Footer';
 import Login from './Pages/Login/Login';
+import Blog from './Pages/Blog/Blog';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
      <Routes>
        <Route path='/' element={<Home/>}/>
        <Route path='/home' element={<Home/>}/>
+       <Route path='/blogs' element={<Blog/>}/>
        <Route path='/add-item' element={<AddItem/>}/>
        <Route path='/inventory/:id' element={<Inventory/>}/>
        <Route path='/login' element={<Login/>}/>

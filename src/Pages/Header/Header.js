@@ -3,8 +3,12 @@ import './Header.css'
 import bg from '../../images/header-bg.png';
 import { Link } from 'react-router-dom';
 import { Nav, Navbar } from 'react-bootstrap';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+import { signOut } from 'firebase/auth';
 
 const Header = () => {
+    const [user, loading, error] = useAuthState(auth)
     return (
         <div>
             <div className='bgHeader'>
@@ -13,25 +17,30 @@ const Header = () => {
             </div>
             <div>
                 <Navbar className='headerTop' expand="lg">
-                   
-                        <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
-                        <Navbar.Toggle aria-controls="navbarScroll" />
-                        <Navbar.Collapse id="navbarScroll">
-                            <Nav
-                                className="me-auto my-2 my-lg-0"
-                                style={{ maxHeight: '100px', color: 'white' }}
-                                navbarScroll
-                            >
-                                <Nav.Link as={Link} className='text-light h5' to="/home">Home</Nav.Link>
-                                <Nav.Link as={Link} className='text-light h5' to="#action2">Blogs</Nav.Link>
-                                <Nav.Link as={Link} className='text-light h5' to="/login">Login</Nav.Link>
-                               
+
+                    <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="navbarScroll" />
+                    <Navbar.Collapse id="navbarScroll">
+                        <Nav
+                            className="me-auto my-2 my-lg-0"
+                            style={{ maxHeight: '100px', color: 'white' }}
+                            navbarScroll
+                        >
+                            <Nav.Link as={Link} className='text-light h5' to="/home">Home</Nav.Link>
+                            <Nav.Link as={Link} className='text-light h5' to="/blogs">Blogs</Nav.Link>
+                            {
+                                user?'':<Nav.Link as={Link} className='text-light h5' to="/login">Login</Nav.Link>
+                            }
+
+                            {
+                                user &&
                                 <>
                                     <Nav.Link as={Link} className='text-light h5' to="/inventory/manage-item">Manage Item</Nav.Link>
                                     <Nav.Link as={Link} className='text-light h5' to="/add-item">Add Item</Nav.Link>
-                                    <Nav.Link as={Link} className='text-light h5' to="/add-item">Sign out</Nav.Link>
+                                    <Nav.Link as={Link} className='text-light h5' to="#" onClick={()=>signOut(auth)}>Sign out</Nav.Link>
                                 </>
-                                {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
+                            }
+                            {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
                                     <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                                     <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
                                     <NavDropdown.Divider />
@@ -40,8 +49,8 @@ const Header = () => {
                                     </NavDropdown.Item>
                                 </NavDropdown> */}
 
-                            </Nav>
-                            {/* <Form className="d-flex">
+                        </Nav>
+                        {/* <Form className="d-flex">
                                 <FormControl
                                     type="search"
                                     placeholder="Search"
@@ -50,8 +59,8 @@ const Header = () => {
                                 />
                                 <Button variant="outline-success">Search</Button>
                             </Form> */}
-                        </Navbar.Collapse>
-                    
+                    </Navbar.Collapse>
+
                 </Navbar>
             </div>
         </div>
