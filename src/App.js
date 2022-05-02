@@ -24,6 +24,7 @@ function App() {
        <Route path='/blogs' element={<Blog/>}/>
        <Route path='/add-item' element={<AddItem/>}/>
        <Route path='/inventory/:id' element={<PrivateRoute><Inventory/></PrivateRoute>}/>
+       <Route path='/manage-inventories' element={<ManageItem/>}/>
        <Route path='/login' element={<Login/>}/>
 
        <Route path='*' element={<NotFound/>}/>

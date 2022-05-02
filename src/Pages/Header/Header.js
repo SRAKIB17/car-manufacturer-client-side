@@ -35,7 +35,7 @@ const Header = () => {
                             {
                                 user &&
                                 <>
-                                    <Nav.Link as={Link} className='text-light h5' to="/inventory/manage-item">Manage Item</Nav.Link>
+                                    <Nav.Link as={Link} className='text-light h5' to="/manage-inventories">Manage Item</Nav.Link>
                                     <Nav.Link as={Link} className='text-light h5' to="/add-item">Add Item</Nav.Link>
                                     <Nav.Link as={Link} className='text-light h5' to="#" onClick={()=>signOut(auth)}>Sign out</Nav.Link>
                                 </>

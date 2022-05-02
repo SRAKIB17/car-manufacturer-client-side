@@ -2,6 +2,9 @@
     --bg-text-color: #A0CB23;
 }
 .notFound{
+    overflow: hidden;
+    overflow-x: hidden;
+    position: relative;
     background-repeat: no-repeat;
     align-items: center;
     margin-top: 100px;
@@ -13,11 +16,11 @@
     font-size: 100px;
 }
 .notFound h3{
-    color: var(--bg-text-color);
+    color: #eb1002;
 }
 .notFound p{
     font-size: 20px;
-    text-align: center;
+    text-align: justify;
     word-wrap: break-word;
 }
 .notFound button{
@@ -29,6 +32,17 @@
     border-radius: 5px;
     font-size: 20px;
 }
+@media only screen and (max-width:1000px) {
+    .notFound .egg{
+        order: 2 !important;
+    }
+    .notFound .not404{
+        order: 1 !important;
+    }
+    .notFound {
+        flex-direction: column;
+    }
+}
 
 .notFound button:hover{
     background-color: #addd1c;
@@ -39,7 +53,7 @@
 .notFound .bgImage{
     z-index: -1;
     position: absolute;
-    bottom: -150px;
+    bottom: 0;
     right: -110px;
     width: 500px;
 }

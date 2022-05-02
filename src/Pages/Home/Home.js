@@ -57,7 +57,7 @@ const Home = () => {
                     items.map(item => <ItemView id={item._id} item={item} />)
                 }
             </div>
-            <button onClick={()=>navigate('/inventory/manage-item')} className='manageInventories'> Manage Inventories </button>
+            <button onClick={()=>navigate('/manage-inventories')} className='manageInventories'> Manage Inventories </button>
             <div>
                 <Apps/>
             </div>

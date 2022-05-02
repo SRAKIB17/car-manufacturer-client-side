@@ -6,6 +6,7 @@ import AddItem from '../AddItems/AddItem';
 import ConfirmDelete from './ConfirmDelete';
 import { useNavigate } from 'react-router-dom';
 import Edit from './Edit';
+import Loading from '../Loading/Loading';
 const ManageItem = () => {
     const navigate = useNavigate()
     const [items, setItems] = useState([])
@@ -33,7 +34,9 @@ const ManageItem = () => {
         setDeleteId(id)
         setDelete(!deleteItem)
     }
-
+    if(items.length===0){
+        return <Loading/>
+    }
 
     const deleteConfirm = async () => {
 
@@ -50,7 +53,7 @@ const ManageItem = () => {
             <div className='ManageItemMainTitle'>
                 <h1 className='text-center' style={{ color: '#7da30a' }}>Manage Items</h1>
 
-                <button onClick={() => navigate('/add-item')} className='manageInventories'> Add Item  </button>
+                <button onClick={() => navigate('/add-item')} className='manageInventories'> Add New Item  </button>
             </div>
             <div>
                 {
