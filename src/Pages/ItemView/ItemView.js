@@ -1,40 +1,42 @@
 import React from 'react';
 import './ItemView.css'
 import { Link, useNavigate } from 'react-router-dom';
-import add from './svg/add-cart-.svg';
-import manage from './svg/manage.png';
+
+
 
 const ItemView = ({ item: { DiscountPrice, category, details, imageUrl, price, quantity, supplierName, title, _id } }) => {
     const navigate = useNavigate()
     return (
         <div className='item'>
-            <img src={imageUrl} alt="" />
-            <div>
+            <div className='inventorie'>
+                <img src={imageUrl} alt="" />
                 <h3>{title}</h3>
-                <div>
-                    <h3 className='price'><del className='old'>${price}</del><span className='new'>     ${DiscountPrice}</span></h3>
-                    <span className='category'>
-                        <Link to='/'><small>{category}</small></Link>
-                        <b>||</b>
-                        <Link to=''>{supplierName}</Link>
+                <h5>Quantity:
+                    <span className='new'> {quantity}
                     </span>
+                </h5>
+                <h3 className='price'>
+                    Price:
+                    <del className='old'> ${price}</del>
+                    <span className='new'>     ${DiscountPrice}</span>
+                </h3>
+                <span className='category'>
+                    <Link to='/'><small>{category}</small></Link>
+                    <b>||</b>
+                    <Link to=''>{supplierName}</Link>
+                </span>
 
-                    <p>
-                        {
-                            details?.substring(0, 60)
-                        }...
-                    </p>
-                    <div className='manage'>
-                        <div>
-                            <button><img src={add} alt="" className='manage' />Add Cart</button>
-                        </div>
-                        <div>
-                            <button onClick={() => { navigate('/inventory/'+_id) }}> <img src={manage} alt="" className='manage' /> Manage Item</button>
-
-                        </div>
-                    </div>
-                </div>
+                <p>
+                    {
+                        details?.substring(0, 60)
+                    }...
+                </p>
             </div>
+            <div>
+                <button onClick={() => { navigate('/inventory/' + _id) }}> Manage Item</button>
+
+            </div>
+
         </div>
     );
 };

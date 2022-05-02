@@ -1,13 +1,17 @@
+:root {
+    --bg-text-color: #80a218;
+}
+
 .manageItemMain {
     display: flex;
-  
+
     justify-content: center;
     margin: 30px;
 }
 
 .manageItem img{
+    width: 400px;
     height: auto;
-    max-width: 100%;
 }
 .manageItem .price {
     display: flex;
@@ -16,7 +20,7 @@
     align-items: center;
 }
 
-.manageItem .price .new {
+.manageItem .new {
     color: var(--bg-text-color);
 }
 
@@ -35,4 +39,14 @@
     display: block;
     word-break: break-all;
     margin-bottom: 10px;
+}
+.manageItem button{
+    background-color: var(--bg-text-color);
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+}
+.manageItem button:hover{
+    background-color: #b1dd2a;
 }

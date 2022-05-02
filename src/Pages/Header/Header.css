@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Coming+Soon&family=Fira+Code&family=Hind+Siliguri:wght@500&family=Lateef&family=Orbitron&family=Poppins:wght@500&display=swap');
+
+
+
+
+*{
+    font-family: 'Poppins', sans-serif;
+}
 .bgHeader img:nth-child(1){
     position: absolute;
     left: 0;

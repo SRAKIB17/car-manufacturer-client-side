@@ -1,0 +1,79 @@
+:root {
+    --bg-text-color: #80a218;
+}
+
+
+
+.bgFooter img:nth-child(1) {
+    position: absolute;
+    left: 0;
+    /* bottom: 0; */
+    z-index: -10;
+}
+
+.footerSection{
+    padding: 20px 10px;
+    background-color: var(--bg-text-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.bgFooter img:nth-child(2) {
+    z-index: -10;
+    position: absolute;
+    right: 0;
+    transform: rotate(-180deg);
+}
+.quickLinkTitle{
+    text-align: center;
+}
+.quickLink {
+    justify-content: center;
+    display: flex;
+}
+.quickLink ul{
+    list-style: none;
+}
+.quickLink  ul a{
+    color: white;
+    font-weight: 400;
+    text-decoration: none;
+}
+.quickLink ul a:hover{
+    text-decoration: underline;
+}
+
+.socialLink ul {
+    display: flex;
+    padding: 10px;
+    list-style: none;
+}
+.socialLink ul li a{
+    font-size: 25px;
+    padding: 10px;
+    color: white;
+}
+
+.socialLink ul li:hover:nth-child(1) a{
+    color: #036CE3;
+}
+
+.socialLink ul li:hover:nth-child(2) a{
+    color: #D8407E;
+}
+
+.socialLink ul li:hover:nth-child(3) a{
+    color: #1873dc;
+}
+
+.socialLink ul li:hover:nth-child(4) a{
+    color: #1C96E8;
+}
+
+.socialLink ul li:hover:nth-child(5) a{
+    color: #F60002;
+}
+
+.socialLink ul li:hover:nth-child(6) a{
+    color: #C51F26;
+}

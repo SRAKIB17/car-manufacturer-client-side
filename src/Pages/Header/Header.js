@@ -24,12 +24,12 @@ const Header = () => {
                             >
                                 <Nav.Link as={Link} className='text-light h5' to="/home">Home</Nav.Link>
                                 <Nav.Link as={Link} className='text-light h5' to="#action2">Blogs</Nav.Link>
-                                <Nav.Link as={Link} className='text-light h5' to="#action2">Shop</Nav.Link>
-                                <Nav.Link as={Link} className='text-light h5' to="#action2">Link</Nav.Link>
-                                <Nav.Link as={Link} className='text-light h5' to="#action2">Link</Nav.Link>
+                                <Nav.Link as={Link} className='text-light h5' to="#action2">Login</Nav.Link>
+                               
                                 <>
                                     <Nav.Link as={Link} className='text-light h5' to="/manage-item">Manage Item</Nav.Link>
                                     <Nav.Link as={Link} className='text-light h5' to="/add-item">Add Item</Nav.Link>
+                                    <Nav.Link as={Link} className='text-light h5' to="/add-item">Sign out</Nav.Link>
                                 </>
                                 {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
                                     <NavDropdown.Item href="#action3">Action</NavDropdown.Item>

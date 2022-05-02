@@ -1,0 +1,24 @@
+.bestApps img{
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    z-index: -1;
+}
+.bestApps {
+    position: relative;
+}
+.bestApps .appsLink div{
+    display: flex;
+    align-items: center;
+}
+.bestApps .appsLink {
+    position: absolute;
+    left: 100px;
+    bottom: 60px;
+}
+
+.bestApps .appsLink img{
+
+    height: 60px;
+    width: 150px;
+}

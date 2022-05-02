@@ -8,6 +8,7 @@ import NotFound from './Pages/NoteFound/NotFound';
 import Home from './Pages/Home/Home';
 import ManageItem from './Pages/ManageItem/ManageItem';
 import Inventory from './Pages/Inventory/Inventory';
+import Footer from './Pages/Footer/Footer';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
 
        <Route path='*' element={<NotFound/>}/>
      </Routes>
+     <Footer/>
      <ToastContainer/>
     </>
   );

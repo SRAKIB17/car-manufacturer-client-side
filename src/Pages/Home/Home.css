@@ -1,12 +1,90 @@
-.homeHeader{
+:root {
+    --bg-text-color: #80a218;
+}
+
+.homeBanner {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 10px;
-    padding: 20px 100px;
+    padding: 10px;
 }
-.homeHeader img{
+
+.homeBanner  button ,.manageInventories{
+    margin-left: 15px;
+    background-color: var(--bg-text-color);
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+    background-color: #b1dd2a;
+}
+.homeBanner h3 {
+    color: var(--bg-text-color);
+}
+
+.homeBanner img {
     max-width: 100%;
     height: auto;
+}
 
+.inventoriesTitle {
+    text-align: center;
+}
+
+.inventoriesTitle small {
+    color: var(--bg-text-color);
+}
+
+.inventoriesTitle div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inventoriesTitle div div {
+    background-color: var(--bg-text-color);
+    width: 100px;
+    height: 1px;
+}
+
+/* for join with us  */
+.joinWithUs {
+    position: relative;
+    /* width: 100%; */
+    align-items: center;
+    justify-content: start;
+    display: flex;
+    height: 200px;
+    padding-left: 30px;
+    background-color: rgb(218, 218, 218);
+    margin: 20px;
+}
+.joinWithUs img{
+    max-width: 100%;
+    height: auto;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    margin-bottom: 0;
+}
+.joinWithUs div div{
+    padding-left: 10px;
+    display: flex;
+}
+.joinWithUs div h3{
+    color: var(--bg-text-color);    
+}
+.joinWithUs div div{
+    padding-left: 10px;
+    display: flex;
+}
+.joinWithUs input {
+    outline: none;
+    border: none;
+}
+.joinWithUs button {
+    background-color: #b1dd2a;
+    border: none;
+    color: white;
 }
