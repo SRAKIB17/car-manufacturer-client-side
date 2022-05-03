@@ -12,6 +12,7 @@ import Footer from './Pages/Footer/Footer';
 import Login from './Pages/Login/Login';
 import Blog from './Pages/Blog/Blog';
 import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
+import MyItems from './Pages/MyItems/MyItems';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
        <Route path='/add-item' element={<AddItem/>}/>
        <Route path='/inventory/:id' element={<PrivateRoute><Inventory/></PrivateRoute>}/>
        <Route path='/manage-inventories' element={<ManageItem/>}/>
+       <Route path='/my-items' element={<MyItems/>}/>
        <Route path='/login' element={<Login/>}/>
 
        <Route path='*' element={<NotFound/>}/>

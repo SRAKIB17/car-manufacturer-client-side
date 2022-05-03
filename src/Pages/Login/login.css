@@ -65,18 +65,18 @@
     width:257px;
     border: none;
 }
-.socialLogin button:nth-child(1){
+.socialLogin .facebook{
     background-color: #0095f6;
     color: white;
     padding: 5px;
 }
-.socialLogin button:nth-child(2){
+.socialLogin .google{
     background-color:#FBBC05;
     color: white;
     padding: 5px;
 }
 
-.socialLogin button:nth-child(4):hover,button:nth-child(3):hover {
+.socialLogin .already:hover,.resetPass:hover {
     text-decoration: underline;
 }
 

@@ -12,15 +12,17 @@ import '../AddItems/AddItem.css'
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import useFindOneItem from '../../hooks/useFindOneItem';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const AddItem = ({ updateId, handleEdit, setItems:{ setItems, items } }) => {
-
+    const [user] = useAuthState(auth)
     const { item, setItem } = useFindOneItem(updateId)
 
     const onKeyUp = (event) => {
         setItem({})
     }
-
+    
     const handleAddItem = async (event) => {
         event.preventDefault()
         const title = event.target.name.value;
@@ -31,12 +33,14 @@ const AddItem = ({ updateId, handleEdit, setItems:{ setItems, items } }) => {
         const supplierName = event.target.supplierName.value;
         const imageUrl = event.target.imageUrl.value;
         const details = event.target.details.value;
-        const Item = { title, category, price, DiscountPrice, quantity, supplierName, imageUrl, details }
+        const userId = user?.uid;
+        const Item = {userId, title, category, price, DiscountPrice, quantity, supplierName, imageUrl, details }
         if (updateId) {
-            const { data } = await axios.put('http://localhost:5000/item/' + updateId, Item);
+            const { data } = await axios.put('https://vast-ridge-91427.herokuapp.com/item/' + updateId, Item);
             if (data.modifiedCount === 1) {
                 const newItem = items.filter(item => item._id !== updateId)
                 setItems([...newItem, Item])
+                toast.success('successfully update item')
             }
             handleEdit('')
         }

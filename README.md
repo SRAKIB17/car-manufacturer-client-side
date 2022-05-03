@@ -1,70 +1,21 @@
-# Getting Started with Create React App
+# Fresh Food Marketplace.
+## Welcome To Our Shop Grocery warehouse
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Live Link:  [Click Me](https://grocery-warehouse-e95eb.web.app/home).
 
-## Available Scripts
 
-In the project directory, you can run:
+### `short description`
+Warehouse club stores generally have low prices and offer a wide variety of numerous items. You can find everything from chicken and fish to televisions and recliners at warehouse club stores, and can usually find these items for a cheaper price than you could at another retail store.
+Runs the app in the development mode. A typical grocery warehouse sells fresh produce, meats, dairy products and, often, bakery goods alongside canned, frozen and prepared foods. In addition, a grocery store will also sell a full range of household, healthcare and personal care items.
 
-### `npm start`
+#### `How do you start a grocery business?`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+` Use a variety of community-wide and in-store promotions to boost grocery store sales and profits.`
+ 1. Advertising and Promotion. ...
+ 2. In-Store Coupons. ...
+ 3. Change Item Locations. ...
+ 4. Tier Items Near Eye Level. ...
+ 5. Use Larger Carts. ...
+ 6. Group Products to Create a Meal. ...
+ 7. Use Loss Leaders. ...
+ 8. Offer Free Samples.

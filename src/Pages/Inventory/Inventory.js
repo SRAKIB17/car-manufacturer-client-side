@@ -1,21 +1,25 @@
 
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useFindOneItem from '../../hooks/useFindOneItem';
 import './Inventory.css'
+import Loading from '../Loading/Loading';
 
 const Inventory = () => {
     const { id } = useParams()
 
     const { item, setItem } = useFindOneItem(id)
+
     // console.log(item.price)
     const { DiscountPrice, category, details, imageUrl, price, quantity, supplierName, title, _id } = item
     const quantityParse = parseInt(quantity)
     const navigate = useNavigate()
 
-
+    if (!item.quantity) {
+        return <Loading />
+    }
     const updateQuantityHandle = (e, method) => {
 
         let newQuantity;
@@ -33,7 +37,7 @@ const Inventory = () => {
 
         const NewItem = { DiscountPrice, category, details, imageUrl, price, quantity: newQuantity, supplierName, title };
 
-        const { data } = axios.put(`http://localhost:5000/item/${id}`, NewItem)
+        const { data } = axios.put(`https://vast-ridge-91427.herokuapp.com/item/${id}`, NewItem)
         setItem(NewItem)
     }
     return (

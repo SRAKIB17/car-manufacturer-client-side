@@ -6,7 +6,7 @@ const useFindOneItem = (id) => {
 
     useEffect(() => {
         const getItem = async () => {
-            const { data } = await axios.get(`http://localhost:5000/item/${id}`)
+            const { data } = await axios.get(`https://vast-ridge-91427.herokuapp.com/item/${id}`)
             setItem(data)
         }
         getItem()

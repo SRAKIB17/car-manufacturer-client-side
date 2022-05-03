@@ -3,7 +3,8 @@ import deleteItem from './Svg/delete.svg';
 import edit from './Svg/edit.svg';
 
 
-const ManageItemList = ({ item: { DiscountPrice, category, details, imageUrl, price, quantity, supplierName, title, _id }, sl,handle:{handleEdit,deleteHandleItem}}) => {
+const ManageItemList = ({ item: { DiscountPrice, category, imageUrl, price, quantity, supplierName, title, _id }, sl,handle:{handleEdit,deleteHandleItem}}) => {
+    const newQuantity = Boolean(parseInt(quantity))
     return (
         <tr className='itemManage'>
             <td>{sl + 1}</td>
@@ -12,7 +13,7 @@ const ManageItemList = ({ item: { DiscountPrice, category, details, imageUrl, pr
             <td title={category}>{category.substring(0, 10)}</td>
             <td>${price}</td>
             <td>${DiscountPrice}</td>
-            <td>{quantity}</td>
+            <td>{newQuantity?quantity: <span className='text-danger'>Stock Out</span>}</td>
             <td title={supplierName}>{supplierName.substring(0,10)}..</td>
             {/* <td>{details.substring(0, 20)}....</td> */}
             <td><button onClick={()=>handleEdit(_id)}><img className='deleEdit' src={edit} alt="" /></button></td>

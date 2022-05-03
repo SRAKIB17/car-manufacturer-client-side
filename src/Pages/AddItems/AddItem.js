@@ -11,15 +11,14 @@ import vegetables from './svg/vegetables.png';
 import './AddItem.css'
 import axios from 'axios';
 import { toast } from 'react-toastify';
-
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const AddItem = () => {
-
-
-
-
+    const [user] = useAuthState(auth)
     const handleAddItem = async (event) => {
         event.preventDefault()
+        const userId = user?.uid;
         const title = event.target.name.value;
         const category = event.target.category.value;
         const price = event.target.price.value;
@@ -28,8 +27,8 @@ const AddItem = () => {
         const supplierName = event.target.supplierName.value;
         const imageUrl = event.target.imageUrl.value;
         const details = event.target.details.value;
-        const Item = { title, category, price, DiscountPrice, quantity, supplierName, imageUrl, details }
-        const { data } = await axios.post('http://localhost:5000/item', Item)
+        const Item = {userId, title, category, price, DiscountPrice, quantity, supplierName, imageUrl, details }
+        const { data } = await axios.post('https://vast-ridge-91427.herokuapp.com/item', Item)
         toast.success('Successfully Added')
 
 

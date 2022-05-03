@@ -6,6 +6,7 @@ import { Nav, Navbar } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { signOut } from 'firebase/auth';
+import logo from '../../images/logo.png'
 
 const Header = () => {
     const [user, loading, error] = useAuthState(auth)
@@ -18,7 +19,7 @@ const Header = () => {
             <div>
                 <Navbar className='headerTop' expand="lg">
 
-                    <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+                    <Navbar.Brand href="#"><img  src={logo} alt="" /></Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         <Nav
@@ -37,6 +38,7 @@ const Header = () => {
                                 <>
                                     <Nav.Link as={Link} className='text-light h5' to="/manage-inventories">Manage Item</Nav.Link>
                                     <Nav.Link as={Link} className='text-light h5' to="/add-item">Add Item</Nav.Link>
+                                    <Nav.Link as={Link} className='text-light h5' to="/my-items">My Items</Nav.Link>
                                     <Nav.Link as={Link} className='text-light h5' to="#" onClick={()=>signOut(auth)}>Sign out</Nav.Link>
                                 </>
                             }

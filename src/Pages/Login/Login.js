@@ -7,15 +7,15 @@ import email from './Svg/email-svgrepo-com.svg';
 import password from './Svg/password-svgrepo-com.svg';
 import userProfile from './Svg/user-svgrepo-com.svg';
 import auth from '../../firebase.init';
-import { useAuthState, useCreateUserWithEmailAndPassword, useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useAuthState, useCreateUserWithEmailAndPassword, useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 
+import axios from 'axios'
 import { toast } from 'react-toastify'
 import Loading from '../Loading/Loading';
 
 
 const Login = () => {
     const location = useLocation()
-    console.log(location)
     const from = location.state?.from?.pathname || '/'
     
     const { register, handleSubmit } = useForm();
@@ -30,13 +30,14 @@ const Login = () => {
 
     // for email passeword register 
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
+    const [updateProfile, updating, error6] = useUpdateProfile(auth);
     // for login 
     const [signInWithEmailAndPassword, user1, loading1, error1] = useSignInWithEmailAndPassword(auth);
 
     // for google login 
     const [signInWithGoogle, user2, loading2, error2] = useSignInWithGoogle(auth);
     // for facebook Login 
-    const [signInWithFacebook, use3, loadin3, error3] = useSignInWithFacebook(auth);
+    const [signInWithFacebook, use3, loading3, error3] = useSignInWithFacebook(auth);
 
     // for reset password 
     const [sendPasswordResetEmail, sending, error4] = useSendPasswordResetEmail(auth);
@@ -44,10 +45,12 @@ const Login = () => {
     // for error handle 
     let errMsg
     const [user5, loading5, error5] = useAuthState(auth);
-
-    if (error || error1 || error2 || error3 || error4||error5) {
-        const err = error?.message || error1?.message || error2?.message || error3?.message || error4?.message
-        errMsg = err.split('/')[1].slice(0, err.split('/')[1].length - 2)
+    if(loading5){
+        return <Loading/>
+    }
+    if (error || error1 || error2 || error3 || error4||error5||error6) {
+        const err = error?.message || error1?.message || error2?.message || error3?.message || error4?.message || error5?.message || error6?.message
+        errMsg = err.split('/')[1].slice(0, err.split('/')[1].length - 2).split('-').join(' ').toUpperCase()
 
     }
     if (user5) {
@@ -57,12 +60,11 @@ const Login = () => {
         //    for signin 
         if (!resetPass && registerUser) {
             await signInWithEmailAndPassword(data.email, data.password)
-            console.log(user1)
-
         }
         // new account 
         else if (!resetPass && !registerUser) {
             await createUserWithEmailAndPassword(data.email, data.password)
+            await updateProfile({ displayName:data.name })
             console.log(user)
         }
         // reset pass 
@@ -70,6 +72,9 @@ const Login = () => {
             await sendPasswordResetEmail(data.email)
             toast.success('send reset link on email')
         }
+
+        const getToken = await axios.post('http://localhost:5000/login', data);
+        localStorage.setItem('token', getToken.data)
     }
     return (
         <div>
@@ -81,20 +86,20 @@ const Login = () => {
                         resetPass || (registerUser ||
                             <div>
                                 <img src={userProfile} alt="" />
-                                <input type='text' {...register("firstName", { required: true, maxLength: 20 })} />
+                                <input placeholder='name' type='text' {...register("name", { required: true, maxLength: 20 })} />
                             </div>)
                     }
 
                     <div>
                         <img src={email} alt="" />
-                        <input type='email' {...register("email", { required: true })} />
+                        <input placeholder='email' type='email' {...register("email", { required: true })} />
 
                     </div>
                     {
                         resetPass ||
                         <div>
                             <img src={password} alt="" />
-                            <input type="password" {...register("password", { required: true })} />
+                            <input placeholder='password' type="password" {...register("password", { required: true })} />
                         </div>
                     }
                     <input type="submit" value={resetPass ? 'Reset Password' : (registerUser ? 'Login' : 'Register')} />
@@ -107,12 +112,12 @@ const Login = () => {
                 <div className='socialLogin'>
                     {
                         resetPass || <>
-                            <button onClick={() => signInWithFacebook()}><Facebook />{registerUser ? 'Login' : 'Register'} with Facebook</button>
-                            <button onClick={() => signInWithGoogle()}><Google /> {registerUser ? 'Login' : 'Register'} with Google</button>
-                            <button onClick={() => setResetPass(!resetPass)}>Reset Password?</button>
+                            <button className='facebook' onClick={() => signInWithFacebook()}><Facebook />{registerUser ? 'Login' : 'Register'} with Facebook</button>
+                            <button className='google' onClick={() => signInWithGoogle()}><Google /> {registerUser ? 'Login' : 'Register'} with Google</button>
+                            <button className='resetPass' onClick={() => setResetPass(!resetPass)}>Reset Password?</button>
                         </>
                     }
-                    <button onClick={registerHandlar}> {registerUser ? 'Create new Account' : 'Already have account Login'}</button>
+                    <button className='already' onClick={registerHandlar}> {registerUser ? 'Create new Account' : 'Already have account Login'}</button>
                 </div>
             </div>
 

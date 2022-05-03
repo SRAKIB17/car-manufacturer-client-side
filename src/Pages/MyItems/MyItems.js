@@ -1,14 +1,17 @@
+
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import ManageItemList from './ManageItemList';
-import './ManageItem.css'
+import ManageItemList from '../ManageItem/ManageItemList';
 
-import {toast} from 'react-toastify';
-import ConfirmDelete from './ConfirmDelete';
+
+import { toast } from 'react-toastify';
+import ConfirmDelete from '../ManageItem/ConfirmDelete';
 import { useNavigate } from 'react-router-dom';
-import Edit from './Edit';
+import Edit from '../ManageItem/Edit';
 import Loading from '../Loading/Loading';
-const ManageItem = () => {
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+const MyItems =  () => {
     const navigate = useNavigate()
     const [items, setItems] = useState([])
     const [edit, setEdit] = useState(false)
@@ -16,14 +19,18 @@ const ManageItem = () => {
     const [deleteId, setDeleteId] = useState('')
     const [updateId, setUpdateId] = useState('')
 
+    const [user] = useAuthState(auth)
 
     useEffect(() => {
         const getItem = async () => {
-            const { data } = await axios.get(`https://vast-ridge-91427.herokuapp.com/item?page=1&skip=100`)
+            const { data } = await axios.get(`http://localhost:5000/my-items/${user?.uid}?page=1&skip=100&email=${user?.email}`,{
+                headers: {token: `secToken ${localStorage.getItem('token')}`}
+            })
+            
             setItems(data)
         }
         getItem()
-    }, [updateId])
+    }, [user])
     // for edit item 
     const handleEdit = (id) => {
         setEdit(!edit)
@@ -35,8 +42,11 @@ const ManageItem = () => {
         setDeleteId(id)
         setDelete(!deleteItem)
     }
-    if(items.length===0){
-        return <Loading/>
+    if (items.length === 0) {
+        return <div>
+            <h1 className='text-denger text-center'>Not Found</h1>
+            <Loading/>
+        </div>
     }
 
     const deleteConfirm = async () => {
@@ -52,7 +62,7 @@ const ManageItem = () => {
     return (
         <div>
             <div className='ManageItemMainTitle'>
-                <h1 className='text-center' style={{ color: '#7da30a' }}>Manage Items</h1>
+                <h1 className='text-center' style={{ color: '#7da30a' }}>My Items</h1>
 
                 <button onClick={() => navigate('/add-item')} className='manageInventories'> Add New Item  </button>
             </div>
@@ -103,4 +113,4 @@ const ManageItem = () => {
     );
 };
 
-export default ManageItem;
+export default MyItems;
