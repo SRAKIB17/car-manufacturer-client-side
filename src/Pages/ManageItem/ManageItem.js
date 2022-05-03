@@ -39,7 +39,7 @@ const ManageItem = () => {
         if (location === 'my-items') {
             const getItem = async () => {
                 try {
-                    const { data } = await axios.get(`http://localhost:5000/my-items/${user?.uid}?page=1&skip=100&email=${user?.email}`, {
+                    const { data } = await axios.get(`https://vast-ridge-91427.herokuapp.com/my-items/${user?.uid}?page=1&skip=100&email=${user?.email}`, {
                         headers: { token: `secToken ${localStorage.getItem('token')}` }
                     })
                     setItems(data)
@@ -57,7 +57,7 @@ const ManageItem = () => {
         // for search section 
         else if (search) {
             const getItem = async () => {
-                const { data } = await axios.get(`http://localhost:5000/item?page=0&skip=`)
+                const { data } = await axios.get(`https://vast-ridge-91427.herokuapp.com/item?page=0&skip=`)
                 setSearchResult(data)
                 console.log(searchReasult)
             }
@@ -69,7 +69,7 @@ const ManageItem = () => {
         else if(!search && location !== 'my-items'){
             console.log(534534534)
             const getItem = async () => {
-                const { data } = await axios.get(`http://localhost:5000/item?page=${page}&skip=${skip}`)
+                const { data } = await axios.get(`https://vast-ridge-91427.herokuapp.com/item?page=${page}&skip=${skip}`)
                 setItems(data)
             }
             getItem()
@@ -83,13 +83,13 @@ const ManageItem = () => {
 
     const [total, setTotal] = useState(0)
     useEffect(() => {
-        axios.get('http://localhost:5000/item-page')
+        axios.get('https://vast-ridge-91427.herokuapp.com/item-page')
             .then(res => {
                 const count = res.data.page;
                 setTotal(Math.ceil(count / skip))
 
             })
-    }, [skip])
+    }, [skip,page])
 
     //______________________________ for edit item ______________________________
 

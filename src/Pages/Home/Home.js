@@ -13,7 +13,7 @@ const Home = () => {
     const [items, setItems] = useState([])
     useEffect(() => {
         const getItem = async () => {
-            const { data } = await axios.get(`http://localhost:5000/item?page=0&skip=6`)
+            const { data } = await axios.get(`https://vast-ridge-91427.herokuapp.com/item?page=0&skip=6`)
             setItems(data)
         }
         getItem()

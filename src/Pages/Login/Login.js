@@ -73,7 +73,7 @@ const Login = () => {
             toast.success('send reset link on email')
         }
 
-        const getToken = await axios.post('http://localhost:5000/login', data);
+        const getToken = await axios.post('https://vast-ridge-91427.herokuapp.com/login', data);
         localStorage.setItem('token', getToken.data)
     }
     return (
