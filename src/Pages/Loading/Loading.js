@@ -29,10 +29,7 @@ const Loading = () => {
                     <div className="css-dom"></div>
                     <div className="css-dom"></div>
                     <div className="css-dom"></div>
-                    <div className="css-dom"></div>
-                    <div className="css-dom"></div>
-                    <div className="css-dom"></div>
-                    <div className="css-dom"></div>
+                   
                 </div>
             </div>
         </div>

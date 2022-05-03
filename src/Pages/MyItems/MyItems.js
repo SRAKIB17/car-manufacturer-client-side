@@ -11,7 +11,8 @@ import Edit from '../ManageItem/Edit';
 import Loading from '../Loading/Loading';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
-const MyItems =  () => {
+import { signOut } from 'firebase/auth';
+const MyItems = () => {
     const navigate = useNavigate()
     const [items, setItems] = useState([])
     const [edit, setEdit] = useState(false)
@@ -23,11 +24,20 @@ const MyItems =  () => {
 
     useEffect(() => {
         const getItem = async () => {
-            const { data } = await axios.get(`http://localhost:5000/my-items/${user?.uid}?page=1&skip=100&email=${user?.email}`,{
-                headers: {token: `secToken ${localStorage.getItem('token')}`}
-            })
-            
-            setItems(data)
+            try {
+                const { data } = await axios.get(`http://localhost:5000/my-items/${user?.uid}?page=1&skip=100&email=${user?.email}`, {
+                    headers: { token: `secToken ${localStorage.getItem('token')}` }
+                })
+                setItems(data)
+            }
+            catch (err) {
+               if(err.response.status === 401 || err.response.status === 403){
+                   signOut(auth)
+               }
+            }
+
+
+
         }
         getItem()
     }, [user])
@@ -44,8 +54,8 @@ const MyItems =  () => {
     }
     if (items.length === 0) {
         return <div>
-            <h1 className='text-denger text-center'>Not Found</h1>
-            <Loading/>
+            <h1 style={{color:'gray'}} className='text-denger text-center'>Not Found</h1>
+            <Loading />
         </div>
     }
 
