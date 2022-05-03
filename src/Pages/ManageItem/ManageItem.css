@@ -12,6 +12,8 @@
 
 .overFlow{
     overflow-x: auto;
+    overflow: auto;
+    height: 70vh;
 }
 * ::-webkit-scrollbar{
     width: 10px;
@@ -161,4 +163,51 @@
 .delete button:nth-of-type(2){
     color: white;
     background-color:  #cb2323;
+}
+
+.pageNumber{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    align-items: center;
+}
+.pageNumber .page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.pageNumber .page div{
+    border-radius: 10px;
+    background-color: orange;
+    padding: 5px;
+    width: 30px;
+    text-align: center;
+    color: white;
+    margin: 2px;
+    
+}
+.currentPage{
+    background-color: #7da30a !important;
+}
+.searchBtn button{
+    background-color: #7da30a;
+    color: white;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+.searchBtn {
+    display: flex;
+    align-items: center;
+
+}
+.searchBtn input {
+    padding: 0 5px;
+    font-size: 20px;
+    background-color: #f2f5e8;
+    outline: none;
+    border: none;
+    border-radius: 5px;
 }

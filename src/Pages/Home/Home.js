@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import ItemView from '../ItemView/ItemView';
 import headerHome from './../../images/header.png';
 import './Home.css'
-import { Facebook, Send } from 'react-bootstrap-icons'
+import { Send } from 'react-bootstrap-icons'
 import join from '../../images/join.png';
 import Apps from './Apps';
 import { useNavigate } from 'react-router-dom';
@@ -13,7 +13,7 @@ const Home = () => {
     const [items, setItems] = useState([])
     useEffect(() => {
         const getItem = async () => {
-            const { data } = await axios.get(`https://vast-ridge-91427.herokuapp.com/item?page=1&skip=6`)
+            const { data } = await axios.get(`http://localhost:5000/item?page=0&skip=6`)
             setItems(data)
         }
         getItem()
