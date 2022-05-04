@@ -45,7 +45,7 @@ const ManageItem = () => {
             if (user?.email) {
                 const getItem = async () => {
                     try {
-                        const { data } = await axios.get(`http://localhost:5000/my-items/${user?.uid}?page=${page}&skip=${skip}&email=${user?.email}`, {
+                        const { data } = await axios.get(`https://vast-ridge-91427.herokuapp.com/my-items/${user?.uid}?page=${page}&skip=${skip}&email=${user?.email}`, {
                             headers: { token: `secToken ${localStorage.getItem('token')}` }
                         })
                         setItems(data.data)
@@ -66,7 +66,6 @@ const ManageItem = () => {
         }
         //------------------search result handle -------------------
         if (search) {
-
             searchReasultHandle()
             if (skip) {
                 setItems(searchResult.slice(skip * page, skip * (page + 1)))
@@ -80,7 +79,7 @@ const ManageItem = () => {
         else if (location !== 'my-items') {
 
             const getItem = async () => {
-                const { data } = await axios.get(`http://localhost:5000/item?page=${page}&skip=${skip}`)
+                const { data } = await axios.get(`https://vast-ridge-91427.herokuapp.com/item?page=${page}&skip=${skip}`)
                 const count = data.count;
 
                 setTotalPage(Math.ceil(count / skip))
@@ -97,7 +96,7 @@ const ManageItem = () => {
     const searchReasultHandle = async () => {
         if (location === 'my-items' && user?.email) {
 
-            const { data } = await axios.get(`http://localhost:5000/my-items/${user?.uid}?page=0&skip=&email=${user?.email}`, {
+            const { data } = await axios.get(`https://vast-ridge-91427.herokuapp.com/my-items/${user?.uid}?page=0&skip=&email=${user?.email}`, {
                 headers: { token: `secToken ${localStorage.getItem('token')}` }
             })
             setSearchArray(data.data)
@@ -105,7 +104,7 @@ const ManageItem = () => {
         }
         else if (location !== 'my-items' && user?.email) {
 
-            const { data } = await axios.get(`http://localhost:5000/item/?page=0&skip=&email=${user?.email}`)
+            const { data } = await axios.get(`https://vast-ridge-91427.herokuapp.com/item/?page=0&skip=&email=${user?.email}`)
             setSearchArray(data.data)
         }
     }
