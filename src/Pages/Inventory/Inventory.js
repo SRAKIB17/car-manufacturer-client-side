@@ -17,9 +17,10 @@ const Inventory = () => {
     const quantityParse = parseInt(quantity)
     const navigate = useNavigate()
 
-    if (!item.quantity) {
-        return <Loading />
+    if(Object.keys(item).length===0){
+        return <Loading/>
     }
+
     const updateQuantityHandle = (e, method) => {
 
         let newQuantity;

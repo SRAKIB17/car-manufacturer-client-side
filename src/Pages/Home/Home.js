@@ -14,7 +14,7 @@ const Home = () => {
     useEffect(() => {
         const getItem = async () => {
             const { data } = await axios.get(`https://vast-ridge-91427.herokuapp.com/item?page=0&skip=6`)
-            setItems(data)
+            setItems(data.data)
         }
         getItem()
     }, [])
@@ -67,7 +67,7 @@ const Home = () => {
                     <h3>Join With Our Warehouse</h3>
                     <div>
                         <form id='joinEmail'>
-                            <input type="email" name="" id="" />
+                            <input type="email" name="" id="" style={{width:'200px'}}/>
                         </form>
                         <button form='joinEmail'><Send /></button>
                     </div>
