@@ -2,64 +2,84 @@
     --bg-text-color: #80a218;
 }
 
-.footerSection{
+footer {
     padding: 20px 10px;
     background-color: var(--bg-text-color);
+}
+
+.footerSection {
+
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.quickLinkTitle{
+.quickLinkTitle {
     text-align: center;
 }
+
 .quickLink {
     justify-content: center;
     display: flex;
 }
-.quickLink ul{
+
+.quickLink ul {
     list-style: none;
 }
-.quickLink  ul a{
+
+.quickLink ul a {
     color: white;
     font-weight: 400;
     text-decoration: none;
 }
-.quickLink ul a:hover{
+
+.quickLink ul a:hover {
     text-decoration: underline;
 }
 
+
+/* ___________________________ for social link  __________________________________*/
+
 .socialLink ul {
     display: flex;
+    flex-wrap: wrap;
     padding: 10px;
     list-style: none;
 }
-.socialLink ul li a{
+
+.socialLink ul li a {
     font-size: 25px;
     padding: 10px;
     color: white;
 }
 
-.socialLink ul li:hover:nth-child(1) a{
+.socialLink ul li:hover:nth-child(1) a {
     color: #036CE3;
 }
 
-.socialLink ul li:hover:nth-child(2) a{
+.socialLink ul li:hover:nth-child(2) a {
     color: #D8407E;
 }
 
-.socialLink ul li:hover:nth-child(3) a{
+.socialLink ul li:hover:nth-child(3) a {
     color: #1873dc;
 }
 
-.socialLink ul li:hover:nth-child(4) a{
+.socialLink ul li:hover:nth-child(4) a {
     color: #1C96E8;
 }
 
-.socialLink ul li:hover:nth-child(5) a{
+.socialLink ul li:hover:nth-child(5) a {
     color: #F60002;
 }
 
-.socialLink ul li:hover:nth-child(6) a{
+.socialLink ul li:hover:nth-child(6) a {
     color: #C51F26;
+}
+
+footer .copy{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
 }

@@ -4,36 +4,69 @@
     border-radius: 50%;
 }
 
-.ManageItemMainTitle{
+.ManageItemMainTitle {
     display: flex;
     align-items: center;
     justify-content: end;
 }
 
-.overFlow{
+.searchBtn button {
+    background-color: #7da30a;
+    color: white;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+}
+
+.searchBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchBtn input {
+    color: #4c6600;
+    margin: 0 5px;
+    width: 150px;
+    padding: 2px 5px;
+    font-size: 18px;
+    background-color: #f2f5e8;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+}
+
+.overFlow {
     overflow-x: auto;
     overflow: auto;
     height: 70vh;
 }
-* ::-webkit-scrollbar{
+
+* ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
 }
-*::-webkit-scrollbar-track{
+
+*::-webkit-scrollbar-track {
     border-radius: 20px;
-    background-color:rgb(236, 236, 236) ;
+    background-color: rgb(236, 236, 236);
 }
-* ::-webkit-scrollbar-thumb{
+
+* ::-webkit-scrollbar-thumb {
     background-color: rgb(176, 171, 171);
-    border-radius: 20px; 
+    border-radius: 20px;
 }
+
 .deleEdit {
     width: 20px;
     height: 20px;
 }
-.itemManage{
+
+.itemManage {
     position: relative;
 }
+
 .itemManage button {
     /* margin: 0;
     position: absolute;
@@ -143,41 +176,47 @@
 }
 
 /* for delete item  */
-.delete{
+.delete {
     padding: 0 20px;
 }
-.delete h1{
+
+.delete h1 {
     font-size: 20px;
     color: #7da30a;
 }
-.delete button{
+
+.delete button {
     margin: 5px;
     border-radius: 5px;
     border: none;
     font-size: 18px;
 }
-.delete button:nth-of-type(1){
+
+.delete button:nth-of-type(1) {
     color: white;
-    background-color:  #A0CB23;
-}
-.delete button:nth-of-type(2){
-    color: white;
-    background-color:  #cb2323;
+    background-color: #A0CB23;
 }
 
-.pageNumber{
+.delete button:nth-of-type(2) {
+    color: white;
+    background-color: #cb2323;
+}
+
+.pageNumber {
     display: flex;
     justify-content: center;
     margin: 20px;
     align-items: center;
 }
+
 .pageNumber .page {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
 }
-.pageNumber .page div{
+
+.pageNumber .page div {
     border-radius: 10px;
     background-color: orange;
     padding: 5px;
@@ -185,29 +224,9 @@
     text-align: center;
     color: white;
     margin: 2px;
-    
-}
-.currentPage{
-    background-color: #7da30a !important;
-}
-.searchBtn button{
-    background-color: #7da30a;
-    color: white;
-    font-size: 20px;
-    border: none;
-    border-radius: 5px;
-    outline: none;
-}
-.searchBtn {
-    display: flex;
-    align-items: center;
 
 }
-.searchBtn input {
-    padding: 0 5px;
-    font-size: 20px;
-    background-color: #f2f5e8;
-    outline: none;
-    border: none;
-    border-radius: 5px;
+
+.currentPage {
+    background-color: #7da30a !important;
 }

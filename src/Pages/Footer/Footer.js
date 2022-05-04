@@ -1,5 +1,5 @@
 import React from 'react';
-import bg from '../../images/header-bg.png';
+
 import './Footer.css'
 import { Link } from 'react-router-dom';
 import { ArrowRight, Discord, Facebook, Instagram, Linkedin, Pinterest, Twitter, Youtube } from 'react-bootstrap-icons';
@@ -42,7 +42,9 @@ const Footer = () => {
                 </div>
                 
             </div>
-
+            <div className='copy'>
+                <small>©️ 2022 by individual GROCERY Warehouse contributors.</small>
+            </div>
         </footer>
     );
 };

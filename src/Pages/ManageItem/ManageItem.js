@@ -26,7 +26,10 @@ const ManageItem = () => {
     const [skip, setSkip] = useState(10)
     const [page, setPage] = useState(0)
     const [search, setSearch] = useState(false);
-    const [searchReasult, setSearchResult] = useState([])
+    const [searchArray, setSearchArray] = useState([])
+    const [searchResult, setSearchResult] = useState([])
+    const [totalPage, setTotalPage] = useState(0)
+
 
     //________________________________ for my item get url ________________________
 
@@ -34,66 +37,94 @@ const ManageItem = () => {
 
     const [user, loading] = useAuthState(auth)
 
+    // --------------------------main function handel----------------------------------
+
     useEffect(() => {
         // for my items
         if (location === 'my-items') {
-            const getItem = async () => {
-                try {
-                    const { data } = await axios.get(`https://vast-ridge-91427.herokuapp.com/my-items/${user?.uid}?page=1&skip=100&email=${user?.email}`, {
-                        headers: { token: `secToken ${localStorage.getItem('token')}` }
-                    })
-                    setItems(data)
-                }
-                catch (err) {
-                    if (err.response.status === 401 || err.response.status === 403) {
-                        signOut(auth)
+            if (user?.email) {
+                const getItem = async () => {
+                    try {
+                        const { data } = await axios.get(`http://localhost:5000/my-items/${user?.uid}?page=${page}&skip=${skip}&email=${user?.email}`, {
+                            headers: { token: `secToken ${localStorage.getItem('token')}` }
+                        })
+                        setItems(data.data)
+
+
+                        //---------------------------page number-----------------------------_-----------
+                        const count = data.count;
+                        setTotalPage(Math.ceil(count / skip))
+                    }
+                    catch (err) {
+                        if (err.response.status === 401 || err.response.status === 403) {
+                            signOut(auth)
+                        }
                     }
                 }
+                getItem()
             }
-            getItem()
         }
+        //------------------search result handle -------------------
+        if (search) {
 
-
-        // for search section 
-        else if (search) {
-            const getItem = async () => {
-                const { data } = await axios.get(`https://vast-ridge-91427.herokuapp.com/item?page=0&skip=`)
-                setSearchResult(data)
-                console.log(searchReasult)
+            searchReasultHandle()
+            if (skip) {
+                setItems(searchResult.slice(skip * page, skip * (page + 1)))
             }
-            getItem()
-
+            else{
+                setItems(searchResult)
+            }
         }
         // for manage items 
 
-        else if(!search && location !== 'my-items'){
-            console.log(534534534)
+        else if (location !== 'my-items') {
+
             const getItem = async () => {
-                const { data } = await axios.get(`https://vast-ridge-91427.herokuapp.com/item?page=${page}&skip=${skip}`)
-                setItems(data)
+                const { data } = await axios.get(`http://localhost:5000/item?page=${page}&skip=${skip}`)
+                const count = data.count;
+
+                setTotalPage(Math.ceil(count / skip))
+                setItems(data.data)
+
             }
             getItem()
+
         }
 
     }, [user, updateId, page, skip, search])
 
-    //_____________________________________________________________________________
+    //// ------------for searchReasult ----------------------------
+    const searchReasultHandle = async () => {
+        if (location === 'my-items' && user?.email) {
 
-    //---------------------------page number-----------------------------_-----------
-
-    const [total, setTotal] = useState(0)
-    useEffect(() => {
-        axios.get('https://vast-ridge-91427.herokuapp.com/item-page')
-            .then(res => {
-                const count = res.data.page;
-                setTotal(Math.ceil(count / skip))
-
+            const { data } = await axios.get(`http://localhost:5000/my-items/${user?.uid}?page=0&skip=&email=${user?.email}`, {
+                headers: { token: `secToken ${localStorage.getItem('token')}` }
             })
-    }, [skip,page])
+            setSearchArray(data.data)
+
+        }
+        else if (location !== 'my-items' && user?.email) {
+
+            const { data } = await axios.get(`http://localhost:5000/item/?page=0&skip=&email=${user?.email}`)
+            setSearchArray(data.data)
+        }
+    }
+
+
+    const searchHandler = async e => {
+        const value = e.target.value
+        const result = searchArray.filter(item => item.title.toLowerCase().includes(value.toLowerCase()) || item.category.toLowerCase().includes(value.toLowerCase()) || item.supplierName.toLowerCase().includes(value.toLowerCase()))
+        setSearchResult(result)
+        const count = result.length;
+        const pageCount = Math.ceil(count / skip)
+        setTotalPage(pageCount)
+        setItems(result.slice(0, skip))
+    }
 
     //______________________________ for edit item ______________________________
 
     const handleEdit = (id) => {
+
         setEdit(!edit)
         setUpdateId(id)
     }
@@ -105,9 +136,14 @@ const ManageItem = () => {
         setDeleteId(id)
         setDelete(!deleteItem)
     }
+    //------------------------for loading ------------------------
     if (loading) {
         return <Loading />
     }
+    if (!search && location !== 'my-items' && items.length === 0) {
+        return <Loading />
+    }
+
 
     const deleteConfirm = async () => {
         const { data } = await axios.delete('https://vast-ridge-91427.herokuapp.com/item/' + deleteId)
@@ -120,14 +156,8 @@ const ManageItem = () => {
 
     //--------------------------------------------------------------------------
 
-    //------------------------------------- for search -----------------------------
 
 
-    const searchHandler = e => {
-        const value = e.target.value
-        const result = searchReasult.filter(item => item.title.toLowerCase().includes(value.toLowerCase()) || item.category.toLowerCase().includes(value.toLowerCase()) || item.supplierName.toLowerCase().includes(value.toLowerCase()))
-        setItems(result)
-    }
 
 
     const handle = { handleEdit, deleteHandleItem, deleteConfirm }
@@ -140,7 +170,7 @@ const ManageItem = () => {
                 {/*---------------------------- for search result =-------------------------- */}
                 <div className='searchBtn'>
                     {
-                        search && <input type="text" onChange={searchHandler} name="" id="" />
+                        search && <input type="text" onChange={searchHandler} placeholder='search quarry' name="" id="" />
                     }
                     <button onClick={() => setSearch(!search)}><Search /></button>
                 </div>
@@ -196,8 +226,8 @@ const ManageItem = () => {
             <div className='pageNumber'>
                 <div className='page'>
                     {
-                        Number.isFinite(total) && (
-                            [...Array(total)?.keys()].map(currentPage => <div className={page === currentPage ? 'currentPage' : ''} onClick={() => setPage(currentPage)}>{currentPage + 1}</div>)
+                        Number.isFinite(totalPage) && (
+                            [...Array(totalPage)?.keys()].map(currentPage => <div className={page === currentPage ? 'currentPage' : ''} onClick={() => setPage(currentPage)}>{currentPage + 1}</div>)
                         )
                     }
                 </div>
@@ -205,13 +235,12 @@ const ManageItem = () => {
                     <select onChange={(e) => setSkip(e.target.value)}>
                         <optgroup label="Per page count">
                             <option value="5">5</option>
-                            <option value="10" selected>10</option>
+                            <option value="10" selected='true'>10</option>
                             <option value="15">10</option>
                             <option value="20">20</option>
                             <option value="25">25</option>
                             <option value="">All</option>
                         </optgroup>
-
                     </select>
                 </div>
             </div>
