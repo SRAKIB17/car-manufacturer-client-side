@@ -169,7 +169,7 @@ const ManageItem = () => {
                 {/*---------------------------- for search result =-------------------------- */}
                 <div className='searchBtn'>
                     {
-                        search && <input type="text" onChange={searchHandler} placeholder='search quarry' name="" id="" />
+                        search && <input type="text" onKeyUp={searchHandler} placeholder='search quarry' name="" id="" />
                     }
                     <button onClick={() => setSearch(!search)}><Search /></button>
                 </div>
