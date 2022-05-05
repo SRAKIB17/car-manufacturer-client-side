@@ -14,6 +14,7 @@ import { toast } from 'react-toastify';
 import useFindOneItem from '../../hooks/useFindOneItem';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import {Helmet} from 'react-helmet-async';
 
 const AddItem = ({ updateId, handleEdit, setItems:{ setItems, items } }) => {
     const [user] = useAuthState(auth)
@@ -48,6 +49,9 @@ const AddItem = ({ updateId, handleEdit, setItems:{ setItems, items } }) => {
     }
     return (
         <div className='addItem'>
+            <Helmet>
+                <title>Edit Item</title>
+            </Helmet>
             <h2>Please Update Item</h2>
             <form onSubmit={handleAddItem} onKeyUp={onKeyUp}>
                 <div>

@@ -13,6 +13,7 @@ import auth from '../../firebase.init';
 import { signOut } from 'firebase/auth';
 
 import { Search, } from 'react-bootstrap-icons';
+import {Helmet} from 'react-helmet-async';
 
 
 
@@ -98,6 +99,7 @@ const ManageItem = () => {
             setTotalPage(Math.ceil(data.count / skip))
         }
         setSearchLoading(false)
+        
     }
     // for loading search set 
 
@@ -139,9 +141,7 @@ const ManageItem = () => {
     if (!search && location !== 'my-items' && items.length === 0) {
         return <Loading />
     }
-    if (!search && location === 'my-items' && items.length === 0) {
-        return <Loading />
-    }
+
 
 
     const deleteConfirm = async () => {
@@ -162,6 +162,14 @@ const ManageItem = () => {
     const handle = { handleEdit, deleteHandleItem, deleteConfirm }
     return (
         <div>
+            <Helmet>
+                <title>
+                    {
+                        location !== 'my-items'?'Manage Items':'My Items'
+                    }
+
+                    </title>
+            </Helmet>
             <div>
                 <h1 className='text-center' style={{ color: '#7da30a' }}>{location === 'my-items' ? 'My' : 'Manage'} Items</h1>
             </div>

@@ -224,6 +224,7 @@
 }
 
 .pageNumber .page div {
+    cursor: pointer;
     border-radius: 10px;
     background-color: orange;
     padding: 5px;

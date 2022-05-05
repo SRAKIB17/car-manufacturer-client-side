@@ -1,8 +1,13 @@
 import React from 'react';
+import {Helmet} from 'react-helmet-async';
 import './Blog.css'
 const Blog = () => {
     return (
         <div className='m-4 bolgs'>
+            <Helmet>
+                <title>Blogs</title>
+            </Helmet>
+            
             <div>
                 <h4 className='text-center'><b>Q1:</b> Difference between javascript and nodejs</h4>
                 <table className='table table-striped markdown-table m-4 table-hover'>
@@ -25,11 +30,6 @@ const Blog = () => {
                             <td>It used on the client side</td>
                             <td>It is mostly used on the server side</td>
                         </tr>
-                        <tr>
-                            <td>Some of the javascript frameworks are RamdaJS, TypedJS, etc. </td>
-                            <td>Some of the Nodejs modules are Lodash, express etc. These modules are to be imported from npm</td>
-                        </tr>
-
                     </tbody>
                 </table>
             </div>
@@ -44,7 +44,7 @@ const Blog = () => {
                         So, if you want to write some kind of stand-alone program or server in Javascript, then you can use nodejs for it.
                         <br />
                     </p>
-                    <hr/>
+                    <hr />
                     <p>
                         <b> When should we use MongoDB?</b><br />
 
@@ -70,21 +70,13 @@ const Blog = () => {
                             <td>Tables with fixed rows and columns</td>
                             <td>Document:  JSON documents, Key-value:  key-value pairs, Wide-column:  tables with rows and dynamic columns, Graph:  nodes and edges</td>
                         </tr>
-                        <tr>
-                            <td>Development History</td>
-                            <td>Developed in the 1970s with a focus on reducing data duplication</td>
-                            <td>Developed in the late 2000s with a focus on scaling and allowing for rapid application change driven by agile and DevOps practices.</td>
-                        </tr>
+
                         <tr>
                             <td>Examples</td>
                             <td>Oracle, MySQL, Microsoft SQL Server, and PostgreSQL</td>
                             <td>Document:  MongoDB and CouchDB, Key-value:  Redis and DynamoDB, Wide-column:  Cassandra and HBase, Graph:  Neo4j and Amazon Neptune</td>
                         </tr>
-                        <tr>
-                            <td>Primary Purpose</td>
-                            <td>General purpose</td>
-                            <td>Document:  general purpose, Key-value:  large amounts of data with simple lookup queries, Wide-column:  large amounts of data with predictable query patterns, Graph:  analyzing and traversing relationships between connected data</td>
-                        </tr>
+
                         <tr>
                             <td>Schemas</td>
                             <td>Rigid</td>
@@ -115,11 +107,17 @@ const Blog = () => {
 
                 <div>
                     <h5><b>Q:</b> How JWT Works?</h5>
-                    <b>Answer: </b>
-                    JWTs differ from other web tokens in that they contain a set of claims. Claims are used to transmit information between two parties. What these claims are depends on the use case at hand. For example, a claim may assert who issued the token, how long it is valid for, or what permissions the client has been granted.
-                    <br />
-                    A JWT is a string made up of three parts, separated by dots (.), and serialized using base64. In the most common serialization format, compact serialization, the JWT looks something like this: xxxxx.yyyyy.zzzzz.
-                    <br />
+                    <ol>
+                        <li>Client login with username and password</li>
+                        <li>Server creates a token for the client</li>
+                        <li>Server sends a token to the client</li>
+                        <li>Client stores the token on either local storage or browser cookies</li>
+                        <li>Next time client makes a request a copy of the token is send to the sever for authorization</li>
+                        <li>Server verifies the JWT signature before giving the authorization</li>
+                        <li>Server responds to the client’s request</li>
+                    </ol>
+      	
+
                     Once decoded, you will get two JSON strings:,<br />
 
                     <ol>
@@ -141,9 +139,7 @@ const Blog = () => {
 
                     Typically, a private key, or secret, is used by the issuer to sign the JWT. The receiver of the JWT will verify the signature to ensure that the token hasn’t been altered after it was signed by the issuer. It is difficult for unauthenticated sources to guess the signing key and attempt to change the claims within the JWT.
 
-                    Not all signing algorithms are created equal though. For example, some signing algorithms use a secret value that is shared between the issuer and the party that verifies the JWT. Other algorithms use a public and private key. The private key is known only to the issuer, while the public key can be widely distributed. The public key can be used to verify the signature, but only the private key can be used to create the signature. This is more secure than a shared secret because the private key only needs to exist in one place.
 
-                    Because of this, the server does not need to keep a database with the information needed to identify the user. For developers, this is great news — the server that issues the JWT and the server that validates it do not have to be the same
                 </div>
             </div>
         </div>

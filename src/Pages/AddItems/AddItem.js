@@ -7,6 +7,7 @@ import add from './svg/add.svg';
 import description from './svg/description.png';
 import category from './svg/category.svg';
 import vegetables from './svg/vegetables.png';
+import {Helmet} from 'react-helmet-async';
 
 import './AddItem.css'
 import axios from 'axios';
@@ -36,6 +37,9 @@ const AddItem = () => {
     }
     return (
         <div className='addItem'>
+            <Helmet>
+                <title>Add Item</title>
+            </Helmet>
             <h2>Please Add Item</h2>
             <form onSubmit={handleAddItem}>
                 <div>

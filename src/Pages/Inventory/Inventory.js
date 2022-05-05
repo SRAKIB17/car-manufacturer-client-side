@@ -15,10 +15,11 @@ const Inventory = () => {
     // console.log(item.price)
     const { DiscountPrice, category, details, imageUrl, price, quantity, supplierName, title, _id } = item
     const quantityParse = parseInt(quantity)
+
     const navigate = useNavigate()
 
-    if(Object.keys(item).length===0){
-        return <Loading/>
+    if (Object.keys(item).length === 0) {
+        return <Loading />
     }
 
     const updateQuantityHandle = (e, method) => {
@@ -33,12 +34,17 @@ const Inventory = () => {
             }
         }
         else {
-            newQuantity = quantityParse + parseInt(e.target.parentNode.querySelector('#restock').value)
+            if (isNaN(quantityParse)) {
+                newQuantity = parseInt(e.target.parentNode.querySelector('#restock').value)
+            }
+            else{
+                newQuantity = quantityParse + parseInt(e.target.parentNode.querySelector('#restock').value)
+            }
         }
 
         const NewItem = { DiscountPrice, category, details, imageUrl, price, quantity: newQuantity, supplierName, title };
 
-        const { data } = axios.put(`https://vast-ridge-91427.herokuapp.com/item/${id}`, NewItem)
+        axios.put(`https://vast-ridge-91427.herokuapp.com/item/${id}`, NewItem)
         setItem(NewItem)
     }
     return (
@@ -72,7 +78,7 @@ const Inventory = () => {
                         </p>
 
                         <div className='reStockDel'>
-                            <div>
+                            <div style={{ marginRight: '5px' }}>
                                 <button onClick={(e) => updateQuantityHandle(e, 'reduce')}>Delivered</button>
 
                             </div>
