@@ -24,7 +24,13 @@
     align-items: center;
     justify-content: center;
 }
-
+.loading{
+    top: 100px;
+    font-size: 50px;
+    font-weight: 700;
+    position: absolute;
+    left: 50%;
+}
 .searchBtn input {
     color: #4c6600;
     margin: 0 5px;
@@ -38,6 +44,7 @@
 }
 
 .overFlow {
+    position: relative;
     overflow-x: auto;
     overflow: auto;
     height: 70vh;

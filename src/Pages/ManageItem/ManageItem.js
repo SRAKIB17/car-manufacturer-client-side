@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ManageItemList from './ManageItemList';
 import './ManageItem.css'
 
@@ -12,7 +12,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { signOut } from 'firebase/auth';
 
-import { Search } from 'react-bootstrap-icons';
+import { Search, } from 'react-bootstrap-icons';
 
 
 
@@ -26,10 +26,9 @@ const ManageItem = () => {
     const [skip, setSkip] = useState(10)
     const [page, setPage] = useState(0)
     const [search, setSearch] = useState(false);
-    const [searchArray, setSearchArray] = useState([])
-    const [searchResult, setSearchResult] = useState([])
-    const [totalPage, setTotalPage] = useState(0)
 
+    const [totalPage, setTotalPage] = useState(0)
+    const searchRef = useRef()
 
     //________________________________ for my item get url ________________________
 
@@ -49,9 +48,6 @@ const ManageItem = () => {
                             headers: { token: `secToken ${localStorage.getItem('token')}` }
                         })
                         setItems(data.data)
-
-
-                        //---------------------------page number-----------------------------_-----------
                         const count = data.count;
                         setTotalPage(Math.ceil(count / skip))
                     }
@@ -67,12 +63,6 @@ const ManageItem = () => {
         //------------------search result handle -------------------
         if (search) {
             searchReasultHandle()
-            if (skip) {
-                setItems(searchResult.slice(skip * page, skip * (page + 1)))
-            }
-            else{
-                setItems(searchResult)
-            }
         }
         // for manage items 
 
@@ -92,32 +82,39 @@ const ManageItem = () => {
 
     }, [user, updateId, page, skip, search])
 
-    //// ------------for searchReasult ----------------------------
+    // ------------for searchReasult ----------------------------
+    const [searchLoading, setSearchLoading] = useState(false)
     const searchReasultHandle = async () => {
+        setSearchLoading(true)
+        const SearchQuery = searchRef.current.value;
         if (location === 'my-items' && user?.email) {
-
-            const { data } = await axios.get(`https://vast-ridge-91427.herokuapp.com/my-items/${user?.uid}?page=0&skip=&email=${user?.email}`, {
-                headers: { token: `secToken ${localStorage.getItem('token')}` }
-            })
-            setSearchArray(data.data)
-
+            const { data } = await axios.get(`http://localhost:5000/search?q=${SearchQuery}&userId=${user.uid}&page=${page}&skip=${skip}`);
+            setItems(data.data)
+            setTotalPage(Math.ceil(data.count / skip))
         }
-        else if (location !== 'my-items' && user?.email) {
-
-            const { data } = await axios.get(`https://vast-ridge-91427.herokuapp.com/item/?page=0&skip=&email=${user?.email}`)
-            setSearchArray(data.data)
+        else if (location !== 'my-items') {
+            const { data } = await axios.get(`http://localhost:5000/search?q=${SearchQuery}&page=${page}&skip=${skip}`);
+            setItems(data.data)
+            setTotalPage(Math.ceil(data.count / skip))
         }
+        setSearchLoading(false)
     }
-
+    // for loading search set 
 
     const searchHandler = async e => {
-        const value = e.target.value
-        const result = searchArray.filter(item => item.title.toLowerCase().includes(value.toLowerCase()) || item.category.toLowerCase().includes(value.toLowerCase()) || item.supplierName.toLowerCase().includes(value.toLowerCase()))
-        setSearchResult(result)
-        const count = result.length;
-        const pageCount = Math.ceil(count / skip)
-        setTotalPage(pageCount)
-        setItems(result.slice(0, skip))
+        setSearchLoading(true)
+        if (location === 'my-items' && user?.email) {
+            const { data } = await axios.get(`http://localhost:5000/search?q=${e.target.value}&userId=${user.uid}&page=${page}&skip=${skip}`);
+            console.log(data.data)
+            setItems(data.data)
+            setTotalPage(Math.ceil(data.count / skip))
+        }
+        else if (location !== 'my-items') {
+            const { data } = await axios.get(`http://localhost:5000/search?q=${e.target.value}&page=${page}&skip=${skip}`);
+            setItems(data.data)
+            setTotalPage(Math.ceil(data.count / skip))
+        }
+        setSearchLoading(false)
     }
 
     //______________________________ for edit item ______________________________
@@ -140,6 +137,9 @@ const ManageItem = () => {
         return <Loading />
     }
     if (!search && location !== 'my-items' && items.length === 0) {
+        return <Loading />
+    }
+    if (!search && location === 'my-items' && items.length === 0) {
         return <Loading />
     }
 
@@ -169,7 +169,7 @@ const ManageItem = () => {
                 {/*---------------------------- for search result =-------------------------- */}
                 <div className='searchBtn'>
                     {
-                        search && <input type="text" onKeyUp={searchHandler} placeholder='search quarry' name="" id="" />
+                        search && <input type="text" ref={searchRef} onBlur={searchHandler} onChange={searchHandler} placeholder='search quarry' name="" id="" />
                     }
                     <button onClick={() => setSearch(!search)}><Search /></button>
                 </div>
@@ -215,11 +215,21 @@ const ManageItem = () => {
                             <th></th>
                         </tr>
                     </thead>
+                    {
+                        searchLoading &&
+                        <div className="loading">
+                            <div className="spinner-border" role="status">
+                                <span className="sr-only"></span>
+                            </div>
+                        </div>
+
+                    }
                     <tbody>
                         {
                             items.map(item => <ManageItemList item={item} sl={items.indexOf(item)} handle={handle} key={item._id} />)
                         }
                     </tbody>
+
                 </table>
             </div>
             <div className='pageNumber'>
