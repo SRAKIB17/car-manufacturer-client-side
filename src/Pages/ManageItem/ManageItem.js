@@ -88,12 +88,12 @@ const ManageItem = () => {
         setSearchLoading(true)
         const SearchQuery = searchRef.current.value;
         if (location === 'my-items' && user?.email) {
-            const { data } = await axios.get(`http://localhost:5000/search?q=${SearchQuery}&userId=${user.uid}&page=${page}&skip=${skip}`);
+            const { data } = await axios.get(`https://vast-ridge-91427.herokuapp.com/search?q=${SearchQuery}&userId=${user.uid}&page=${page}&skip=${skip}`);
             setItems(data.data)
             setTotalPage(Math.ceil(data.count / skip))
         }
         else if (location !== 'my-items') {
-            const { data } = await axios.get(`http://localhost:5000/search?q=${SearchQuery}&page=${page}&skip=${skip}`);
+            const { data } = await axios.get(`https://vast-ridge-91427.herokuapp.com/search?q=${SearchQuery}&page=${page}&skip=${skip}`);
             setItems(data.data)
             setTotalPage(Math.ceil(data.count / skip))
         }
@@ -104,13 +104,13 @@ const ManageItem = () => {
     const searchHandler = async e => {
         setSearchLoading(true)
         if (location === 'my-items' && user?.email) {
-            const { data } = await axios.get(`http://localhost:5000/search?q=${e.target.value}&userId=${user.uid}&page=${page}&skip=${skip}`);
+            const { data } = await axios.get(`https://vast-ridge-91427.herokuapp.com/search?q=${e.target.value}&userId=${user.uid}&page=${page}&skip=${skip}`);
             console.log(data.data)
             setItems(data.data)
             setTotalPage(Math.ceil(data.count / skip))
         }
         else if (location !== 'my-items') {
-            const { data } = await axios.get(`http://localhost:5000/search?q=${e.target.value}&page=${page}&skip=${skip}`);
+            const { data } = await axios.get(`https://vast-ridge-91427.herokuapp.com/search?q=${e.target.value}&page=${page}&skip=${skip}`);
             setItems(data.data)
             setTotalPage(Math.ceil(data.count / skip))
         }
