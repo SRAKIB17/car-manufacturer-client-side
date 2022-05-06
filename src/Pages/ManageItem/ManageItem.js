@@ -13,7 +13,7 @@ import auth from '../../firebase.init';
 import { signOut } from 'firebase/auth';
 
 import { Search, } from 'react-bootstrap-icons';
-import {Helmet} from 'react-helmet-async';
+import { Helmet } from 'react-helmet-async';
 
 
 
@@ -30,7 +30,14 @@ const ManageItem = () => {
 
     const [totalPage, setTotalPage] = useState(0)
     const searchRef = useRef()
+    const { hash, pathname } = useLocation()
 
+    useEffect(() => {
+        if (hash === '') {
+            window.scrollTo(0,0)
+        }
+
+    }, [hash, pathname])
     //________________________________ for my item get url ________________________
 
     const location = useLocation().pathname.split('/')[1]
@@ -99,7 +106,7 @@ const ManageItem = () => {
             setTotalPage(Math.ceil(data.count / skip))
         }
         setSearchLoading(false)
-        
+
     }
     // for loading search set 
 
@@ -165,10 +172,10 @@ const ManageItem = () => {
             <Helmet>
                 <title>
                     {
-                        location !== 'my-items'?'Manage Items':'My Items'
+                        location !== 'my-items' ? 'Manage Items' : 'My Items'
                     }
 
-                    </title>
+                </title>
             </Helmet>
             <div>
                 <h1 className='text-center' style={{ color: '#7da30a' }}>{location === 'my-items' ? 'My' : 'Manage'} Items</h1>
