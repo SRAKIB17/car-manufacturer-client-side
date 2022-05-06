@@ -32,7 +32,7 @@ const AddItem = () => {
         const { data } = await axios.post('https://vast-ridge-91427.herokuapp.com/item', Item)
         toast.success('Successfully Added')
 
-
+        event.target.reset()
 
     }
     return (
